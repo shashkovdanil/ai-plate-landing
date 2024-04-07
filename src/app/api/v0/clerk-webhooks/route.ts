@@ -33,6 +33,7 @@ export async function POST(request: Request) {
 		if (event.type === "user.created") {
 			await api.users.create({
 				id: event.data.id,
+				email: event.data.email_addresses[0]?.email_address,
 			});
 		}
 

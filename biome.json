@@ -1,16 +1,23 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
-	"organizeImports": {
-		"enabled": true
-	},
-	"files": {
-		"ignore": ["./.next"],
-		"include": ["./src/**/*"]
-	},
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": true
-		}
-	}
+  "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "files": {
+    "ignore": ["./.next"],
+    "include": [
+      "./src/**/*",
+      "./vitest.config.ts",
+      "./postcss.config.js",
+      "./drizzle.config.ts",
+      "./next.config.mjs",
+      "./tailwind.config.ts"
+    ]
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  }
 }

@@ -21,6 +21,7 @@ export const users = pgTable(
 	"users",
 	{
 		id: varchar("id", { length: 32 }).notNull().primaryKey(),
+		email: varchar("email"),
 		age: integer("age"),
 		gender: text("gender", {
 			enum: ["male", "female"],
@@ -33,12 +34,15 @@ export const users = pgTable(
 		goal: text("goal", {
 			enum: goals,
 		}),
+		disabilities: varchar("disabilities", { length: 255 }),
 		metabolicRate: integer("metabolic_rate"),
+		dailyWater: integer("daily_water"),
 		dailyCalories: integer("daily_calories"),
 		dailyProteins: integer("daily_proteins"),
 		dailyFats: integer("daily_fats"),
 		dailyCarbs: integer("daily_carbs"),
-		recommendations: text("recommendations"),
+		nutritionRecommendations: text("nutrition_recommendations"),
+		supplementRecommendations: text("supplement_recommendations"),
 		fullAccess: boolean("full_access").default(false),
 	},
 	(table) => {
@@ -50,6 +54,8 @@ export const users = pgTable(
 
 export const userSchema = createSelectSchema(users);
 export const insertUserSchema = createInsertSchema(users);
+export const updateUserSchema = insertUserSchema.omit({ id: true });
 
 export type User = z.infer<typeof userSchema>;
 export type InsertUser = z.infer<typeof insertUserSchema>;
+export type UpdateUser = z.infer<typeof updateUserSchema>;

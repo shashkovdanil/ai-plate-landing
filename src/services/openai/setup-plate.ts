@@ -60,7 +60,7 @@ Responses are in JSON format. For example:
 	});
 
 	const parsed = schema.safeParse(
-		JSON.parse(completion.choices[0].message.content || "{}"),
+		JSON.parse(completion.choices[0]?.message.content || "{}"),
 	);
 
 	if (parsed.success === false) {

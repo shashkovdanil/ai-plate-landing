@@ -4,12 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:test": "dotenv -e .env.test.local -- bun run dev",
     "build": "next build",
     "start": "next start",
     "lint": "biome check ./src/**/*",
-    "postinstall": "npx simple-git-hooks",
+    "test": "vitest run",
+    "studio:prod": "dotenv -e .env.development.local -- drizzle-kit studio",
+    "studio:test": "dotenv -e .env.test.local -- drizzle-kit studio",
+    "db:push": "bun run db:push:prod && bun run db:push:test",
     "db:push:prod": "dotenv -e .env.development.local -- drizzle-kit push:pg",
-    "db:push:test": "dotenv -e .env.test.local -- drizzle-kit push:pg"
+    "db:push:test": "dotenv -e .env.test.local -- drizzle-kit push:pg",
+    "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.12",
@@ -19,7 +24,7 @@
     "drizzle-zod": "^0.5.1",
     "next": "14.1.4",
     "openai": "^4.33.0",
-    "postgres": "^3.4.4",
+    "pg": "^8.11.5",
     "react": "^18",
     "react-dom": "^18",
     "svix": "^1.21.0",
@@ -27,6 +32,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.4",
+    "@next/env": "^14.1.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -36,7 +42,8 @@
     "postcss": "^8",
     "simple-git-hooks": "^2.11.1",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^1.4.0"
   },
   "simple-git-hooks": {
     "pre-commit": "bun run lint"
