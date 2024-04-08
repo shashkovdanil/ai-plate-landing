@@ -35,6 +35,10 @@ export const plates = pgTable(
 
 export const plateSchema = createSelectSchema(plates);
 export const insertPlateSchema = createInsertSchema(plates);
+export const updatePlateSchema = createInsertSchema(plates).omit({
+	userId: true,
+});
 
 export type Plate = z.infer<typeof plateSchema>;
 export type InsertPlate = z.infer<typeof insertPlateSchema>;
+export type UpdatePlate = z.infer<typeof updatePlateSchema>;
