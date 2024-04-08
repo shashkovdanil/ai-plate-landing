@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev:test": "dotenv -e .env.test.local -- bun run dev",
+    "dev:test": "dotenv -e .env.test.local -- pnpm run dev",
     "build": "next build",
     "start": "next start",
     "lint": "biome check ./src/**/*",
     "test": "vitest run",
     "studio:prod": "dotenv -e .env.development.local -- drizzle-kit studio",
     "studio:test": "dotenv -e .env.test.local -- drizzle-kit studio",
-    "db:push": "bun run db:push:prod && bun run db:push:test",
+    "db:push": "pnpm run db:push:prod && pnpm run db:push:test",
     "db:push:prod": "dotenv -e .env.development.local -- drizzle-kit push:pg",
     "db:push:test": "dotenv -e .env.test.local -- drizzle-kit push:pg"
   },
@@ -45,6 +45,6 @@
     "vitest": "^1.4.0"
   },
   "simple-git-hooks": {
-    "pre-commit": "bun run lint"
+    "pre-commit": "pnpm run lint"
   }
 }
