@@ -80,3 +80,10 @@ export const usersApi = {
 		}
 	},
 };
+
+export const functions = [
+	"create",
+	"update",
+	"generateRecommendations",
+	"delete",
+] satisfies (keyof typeof usersApi)[];

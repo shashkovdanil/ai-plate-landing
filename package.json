@@ -13,8 +13,7 @@
     "studio:test": "dotenv -e .env.test.local -- drizzle-kit studio",
     "db:push": "bun run db:push:prod && bun run db:push:test",
     "db:push:prod": "dotenv -e .env.development.local -- drizzle-kit push:pg",
-    "db:push:test": "dotenv -e .env.test.local -- drizzle-kit push:pg",
-    "postinstall": "npx simple-git-hooks"
+    "db:push:test": "dotenv -e .env.test.local -- drizzle-kit push:pg"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.12",
