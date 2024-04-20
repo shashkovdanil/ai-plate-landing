@@ -18,42 +18,46 @@ type Context = {
 	userId: string | undefined;
 };
 
-// const resolvers = {
-// 	Query: {
-// 		me: async (_, __, ctx) => {
-// 			if (!ctx.userId) {
-// 				throw new GraphQLError("User is not authenticated", {
-// 					extensions: {
-// 						code: "UNAUTHENTICATED",
-// 						http: { status: 401 },
-// 					},
-// 				});
-// 			}
+type ResolversWithoutShit = Pick<Resolvers<Context>, "Query">;
 
-// 			const user = await api.users.getById(ctx.userId);
+const resolvers = {
+	Query: {
+		me: async (_, __, ctx) => {
+			if (!ctx.userId) {
+				throw new GraphQLError("User is not authenticated", {
+					extensions: {
+						code: "UNAUTHENTICATED",
+						http: { status: 401 },
+					},
+				});
+			}
 
-// 			if (!user) {
-// 				throw new GraphQLError("User is not authenticated", {
-// 					extensions: {
-// 						code: "UNAUTHENTICATED",
-// 						http: { status: 401 },
-// 					},
-// 				});
-// 			}
+			const user = await api.users.getById(ctx.userId);
 
-// 			return user;
-// 		},
-// 	},
-// } satisfies Resolvers<Context>;
+			if (!user) {
+				throw new GraphQLError("User is not authenticated", {
+					extensions: {
+						code: "UNAUTHENTICATED",
+						http: { status: 401 },
+					},
+				});
+			}
 
-const server = new ApolloServer({
-	resolvers: {},
+			return user;
+		},
+		plates: async () => [],
+		presets: async () => [],
+	},
+} satisfies ResolversWithoutShit;
+
+const server = new ApolloServer<Context>({
+	resolvers,
 	typeDefs: schema,
 	introspection: true,
 	csrfPrevention: false,
 });
 
-const handler = startServerAndCreateNextHandler<NextRequest>(server, {
+const handler = startServerAndCreateNextHandler<NextRequest, Context>(server, {
 	context: async (req): Promise<Context> => {
 		const defaultContext = {
 			req,
