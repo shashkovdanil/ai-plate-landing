@@ -40,9 +40,8 @@ type Preset {
 
 type Query {
   me: User
-  user(id: ID!): User
-  plates(userId: ID!, date: Date): [Plate]!
-  presets(userId: ID!): [Preset]!
+  plates(date: Date): [Plate]!
+  presets: [Preset]!
 }
 
 enum Gender {
