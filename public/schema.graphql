@@ -35,6 +35,7 @@ type Plate {
 }
 
 type Preset {
+  id: ID!
   plates: [Plate!]!
 }
 
