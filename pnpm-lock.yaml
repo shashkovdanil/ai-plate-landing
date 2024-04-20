@@ -18,17 +18,20 @@ dependencies:
     specifier: ^4.29.12
     version: 4.29.12(next@14.1.4)(react-dom@18.2.0)(react@18.2.0)
   '@neondatabase/serverless':
-    specifier: ^0.9.0
-    version: 0.9.0
+    specifier: ^0.9.1
+    version: 0.9.1
   '@t3-oss/env-nextjs':
     specifier: ^0.9.2
     version: 0.9.2(typescript@5.4.4)(zod@3.22.4)
+  drizzle-graphql:
+    specifier: ^0.3.0
+    version: 0.3.0(drizzle-orm@0.30.8)(graphql@16.8.1)
   drizzle-orm:
-    specifier: ^0.30.7
-    version: 0.30.7(@neondatabase/serverless@0.9.0)(@types/react@18.2.74)(pg@8.11.5)(react@18.2.0)
+    specifier: ^0.30.8
+    version: 0.30.8(@neondatabase/serverless@0.9.1)(@types/react@18.2.74)(pg@8.11.5)(react@18.2.0)
   drizzle-zod:
     specifier: ^0.5.1
-    version: 0.5.1(drizzle-orm@0.30.7)(zod@3.22.4)
+    version: 0.5.1(drizzle-orm@0.30.8)(zod@3.22.4)
   graphql:
     specifier: ^16.8.1
     version: 16.8.1
@@ -2463,8 +2466,8 @@ packages:
     resolution: {integrity: sha512-gbkePEBupNydxCelHCESvFSFM8XPh1Zs/OAVRW/rKpEqPAl5PbOM90Si8mv9bvnR53uPD2s/FiRxdvSejpRJew==}
     dev: true
 
-  /@neondatabase/serverless@0.9.0:
-    resolution: {integrity: sha512-mmJnUAzlzvxNSZuuhI6kgJjH+JgFdBMYUWxihtq/nj0Tjt+Y5UU3W+SvRFoucnd5NObYkuLYQzk+zV5DGFKGJg==}
+  /@neondatabase/serverless@0.9.1:
+    resolution: {integrity: sha512-Xi+tVIXuaeB24BHzhr0W/4vcbb9WwIaB6yK0RsMIteLtzNB86+am6EDFovd3rYCYM1ea7rWcwte2dLOrzW7eqA==}
     dependencies:
       '@types/pg': 8.6.6
     dev: false
@@ -3901,6 +3904,19 @@ packages:
       wordwrap: 1.0.0
     dev: true
 
+  /drizzle-graphql@0.3.0(drizzle-orm@0.30.8)(graphql@16.8.1):
+    resolution: {integrity: sha512-so8Oe9CedhZ3j5vOUR5ffMzWuKsQGP0B05EtexdS9YAtaokLd45cF99CBKATV9ZHbyYBHLVZR69/ecB/27dbKw==}
+    peerDependencies:
+      drizzle-orm: '>=0.30.8-3d06cf2'
+      graphql: '>=16.3.0'
+    dependencies:
+      drizzle-orm: 0.30.8(@neondatabase/serverless@0.9.1)(@types/react@18.2.74)(pg@8.11.5)(react@18.2.0)
+      graphql: 16.8.1
+      graphql-parse-resolve-info: 4.13.0(graphql@16.8.1)
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /drizzle-kit@0.20.16:
     resolution: {integrity: sha512-WoqV0XDny8mHnVoLYcUs6H3Ae1HBxeV0zi3VXG/mTahIQYfadZmIc3eRqzXjD3yxemj+GdHI1nThddmsoabdIA==}
     hasBin: true
@@ -3926,8 +3942,8 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.30.7(@neondatabase/serverless@0.9.0)(@types/react@18.2.74)(pg@8.11.5)(react@18.2.0):
-    resolution: {integrity: sha512-9qefSZQlu2fO2qv24piHyWFWcxcOY15//0v4j8qomMqaxzipNoG+fUBrQ7Ftk7PY7APRbRdn/nkEXWxiI4a8mw==}
+  /drizzle-orm@0.30.8(@neondatabase/serverless@0.9.1)(@types/react@18.2.74)(pg@8.11.5)(react@18.2.0):
+    resolution: {integrity: sha512-9pBJA0IjnpPpzZ6s9jlS1CQAbKoBmbn2GJesPhXaVblAA/joOJ4AWWevYcqvLGj9SvThBAl7WscN8Zwgg5mnTw==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=3'
@@ -4006,19 +4022,19 @@ packages:
       sqlite3:
         optional: true
     dependencies:
-      '@neondatabase/serverless': 0.9.0
+      '@neondatabase/serverless': 0.9.1
       '@types/react': 18.2.74
       pg: 8.11.5
       react: 18.2.0
     dev: false
 
-  /drizzle-zod@0.5.1(drizzle-orm@0.30.7)(zod@3.22.4):
+  /drizzle-zod@0.5.1(drizzle-orm@0.30.8)(zod@3.22.4):
     resolution: {integrity: sha512-C/8bvzUH/zSnVfwdSibOgFjLhtDtbKYmkbPbUCq46QZyZCH6kODIMSOgZ8R7rVjoI+tCj3k06MRJMDqsIeoS4A==}
     peerDependencies:
       drizzle-orm: '>=0.23.13'
       zod: '*'
     dependencies:
-      drizzle-orm: 0.30.7(@neondatabase/serverless@0.9.0)(@types/react@18.2.74)(pg@8.11.5)(react@18.2.0)
+      drizzle-orm: 0.30.8(@neondatabase/serverless@0.9.1)(@types/react@18.2.74)(pg@8.11.5)(react@18.2.0)
       zod: 3.22.4
     dev: false
 
@@ -4645,6 +4661,19 @@ packages:
       - typescript
       - utf-8-validate
     dev: true
+
+  /graphql-parse-resolve-info@4.13.0(graphql@16.8.1):
+    resolution: {integrity: sha512-VVJ1DdHYcR7hwOGQKNH+QTzuNgsLA8l/y436HtP9YHoX6nmwXRWq3xWthU3autMysXdm0fQUbhTZCx0W9ICozw==}
+    engines: {node: '>=8.6'}
+    peerDependencies:
+      graphql: '>=0.9 <0.14 || ^14.0.2 || ^15.4.0 || ^16.3.0'
+    dependencies:
+      debug: 4.3.4
+      graphql: 16.8.1
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /graphql-request@6.1.0(graphql@16.8.1):
     resolution: {integrity: sha512-p+XPfS4q7aIpKVcgmnZKhMNqhltk20hfXtkaIkTfjjmiKMJ5xrt5c743cL03y/K7y1rg3WrIC49xGiEQ4mxdNw==}

@@ -4,8 +4,9 @@
     "enabled": true
   },
   "files": {
-    "ignore": ["./.next"],
+    "ignore": ["./.next/**/*", "./src/__generated__/**/*"],
     "include": [
+      "./codegen.ts",
       "./src/**/*",
       "./vitest.config.ts",
       "./postcss.config.js",
