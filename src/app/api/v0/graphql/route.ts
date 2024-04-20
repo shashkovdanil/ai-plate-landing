@@ -25,6 +25,12 @@ const handler = startServerAndCreateNextHandler<NextRequest>(server, {
 			return { req };
 		}
 
+		const codegen = req.headers.get("codegen");
+
+		if (codegen) {
+			return { req };
+		}
+
 		const token = req.headers.get("authorization")?.replace("Bearer ", "");
 
 		if (!token)

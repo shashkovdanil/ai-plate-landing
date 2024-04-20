@@ -41,6 +41,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.6.4",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.5",
+    "@graphql-codegen/typescript": "^4.0.6",
+    "@graphql-codegen/typescript-resolvers": "^4.0.6",
     "@next/env": "^14.1.4",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20",
