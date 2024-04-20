@@ -18,36 +18,36 @@ type Context = {
 	userId: string | undefined;
 };
 
-const resolvers = {
-	Query: {
-		me: async (_, __, ctx) => {
-			if (!ctx.userId) {
-				throw new GraphQLError("User is not authenticated", {
-					extensions: {
-						code: "UNAUTHENTICATED",
-						http: { status: 401 },
-					},
-				});
-			}
+// const resolvers = {
+// 	Query: {
+// 		me: async (_, __, ctx) => {
+// 			if (!ctx.userId) {
+// 				throw new GraphQLError("User is not authenticated", {
+// 					extensions: {
+// 						code: "UNAUTHENTICATED",
+// 						http: { status: 401 },
+// 					},
+// 				});
+// 			}
 
-			const user = await api.users.getById(ctx.userId);
+// 			const user = await api.users.getById(ctx.userId);
 
-			if (!user) {
-				throw new GraphQLError("User is not authenticated", {
-					extensions: {
-						code: "UNAUTHENTICATED",
-						http: { status: 401 },
-					},
-				});
-			}
+// 			if (!user) {
+// 				throw new GraphQLError("User is not authenticated", {
+// 					extensions: {
+// 						code: "UNAUTHENTICATED",
+// 						http: { status: 401 },
+// 					},
+// 				});
+// 			}
 
-			return user;
-		},
-	},
-} satisfies Resolvers<Context>;
+// 			return user;
+// 		},
+// 	},
+// } satisfies Resolvers<Context>;
 
 const server = new ApolloServer<Resolvers>({
-	resolvers,
+	resolvers: {},
 	typeDefs: schema,
 	introspection: true,
 	csrfPrevention: false,
