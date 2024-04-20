@@ -4,6 +4,18 @@ import { generateRecommendations } from "@/services/openai/generate-recommendati
 import { eq } from "drizzle-orm";
 
 export const usersApi = {
+	async getById(id: string) {
+		try {
+			const user = await db.query.users.findFirst({
+				where: eq(users.id, id),
+			});
+
+			return user;
+		} catch (error) {
+			console.error(`Can't find user with id: ${id}. Error: ${error}`);
+			throw error;
+		}
+	},
 	async create(data: InsertUser) {
 		try {
 			const [user] = await db.insert(users).values(data).returning();
