@@ -46,7 +46,7 @@ type Context = {
 // 	},
 // } satisfies Resolvers<Context>;
 
-const server = new ApolloServer<Resolvers>({
+const server = new ApolloServer({
 	resolvers: {},
 	typeDefs: schema,
 	introspection: true,
