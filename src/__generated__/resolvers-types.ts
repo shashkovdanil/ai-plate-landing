@@ -32,6 +32,16 @@ export type Goal =
   | 'weight_loss'
   | 'weight_maintenance';
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  updateUser: Maybe<User>;
+};
+
+
+export type MutationUpdateUserArgs = {
+  input: InputMaybe<UserInput>;
+};
+
 export type Plate = {
   __typename?: 'Plate';
   calories: Scalars['Int']['output'];
@@ -80,10 +90,21 @@ export type User = {
   goal: Maybe<Goal>;
   height: Maybe<Scalars['Int']['output']>;
   id: Scalars['ID']['output'];
+  isFilled: Maybe<Scalars['Boolean']['output']>;
   metabolicRate: Maybe<Scalars['Int']['output']>;
   nutritionRecommendations: Maybe<Scalars['String']['output']>;
   supplementRecommendations: Maybe<Scalars['String']['output']>;
   weight: Maybe<Scalars['Int']['output']>;
+};
+
+export type UserInput = {
+  activityLevel: InputMaybe<ActivityLevel>;
+  age: InputMaybe<Scalars['Int']['input']>;
+  disabilities: InputMaybe<Scalars['String']['input']>;
+  gender: InputMaybe<Gender>;
+  goal: InputMaybe<Goal>;
+  height: InputMaybe<Scalars['Int']['input']>;
+  weight: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -164,11 +185,13 @@ export type ResolversTypes = {
   Goal: Goal;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
+  Mutation: ResolverTypeWrapper<{}>;
   Plate: ResolverTypeWrapper<Plate>;
   Preset: ResolverTypeWrapper<Preset>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   User: ResolverTypeWrapper<User>;
+  UserInput: UserInput;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -177,16 +200,22 @@ export type ResolversParentTypes = {
   Date: Scalars['Date']['output'];
   ID: Scalars['ID']['output'];
   Int: Scalars['Int']['output'];
+  Mutation: {};
   Plate: Plate;
   Preset: Preset;
   Query: {};
   String: Scalars['String']['output'];
   User: User;
+  UserInput: UserInput;
 };
 
 export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
   name: 'Date';
 }
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  updateUser: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, MutationUpdateUserArgs>;
+};
 
 export type PlateResolvers<ContextType = any, ParentType extends ResolversParentTypes['Plate'] = ResolversParentTypes['Plate']> = {
   calories: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
@@ -229,6 +258,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   goal: Resolver<Maybe<ResolversTypes['Goal']>, ParentType, ContextType>;
   height: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   id: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  isFilled: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   metabolicRate: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   nutritionRecommendations: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   supplementRecommendations: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -238,6 +268,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 
 export type Resolvers<ContextType = any> = {
   Date: GraphQLScalarType;
+  Mutation: MutationResolvers<ContextType>;
   Plate: PlateResolvers<ContextType>;
   Preset: PresetResolvers<ContextType>;
   Query: QueryResolvers<ContextType>;

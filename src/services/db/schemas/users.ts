@@ -20,7 +20,7 @@ export const goals = [
 export const users = pgTable(
 	"users",
 	{
-		id: varchar("id", { length: 32 }).notNull().primaryKey(),
+		id: varchar("id", { length: 32 }).notNull().primaryKey(), // Clerk user_id
 		email: varchar("email"),
 		age: integer("age"),
 		gender: text("gender", {
@@ -44,6 +44,7 @@ export const users = pgTable(
 		nutritionRecommendations: text("nutrition_recommendations"),
 		supplementRecommendations: text("supplement_recommendations"),
 		fullAccess: boolean("full_access").default(false),
+		isFilled: boolean("is_filled").default(false),
 	},
 	(table) => {
 		return {

@@ -1,6 +1,5 @@
 import { gql } from "graphql-tag";
 
-
 export const schema = gql`
 scalar Date
 
@@ -23,6 +22,7 @@ type User {
   nutritionRecommendations: String
   supplementRecommendations: String
   fullAccess: Boolean
+  isFilled: Boolean
 }
 
 type Plate {
@@ -43,10 +43,24 @@ type Preset {
   plates: [Plate!]!
 }
 
+input UserInput {
+  age: Int
+  gender: Gender
+  weight: Int
+  height: Int
+  activityLevel: ActivityLevel
+  goal: Goal
+  disabilities: String
+}
+
 type Query {
   me: User
   plates(date: Date): [Plate]!
   presets: [Preset]!
+}
+
+type Mutation {
+  updateUser(input: UserInput): User
 }
 
 enum Gender {
