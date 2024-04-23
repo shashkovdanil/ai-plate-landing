@@ -1,10 +1,8 @@
-import type { Resolvers } from "@/__generated__/resolvers-types";
 import { env } from "@/env";
 import { schema } from "@/schema";
 import { api } from "@/services/api";
 import { ApolloServer } from "@apollo/server";
 import { startServerAndCreateNextHandler } from "@as-integrations/next";
-import { GraphQLError } from "graphql";
 import jwt from "jsonwebtoken";
 import jwksClient from "jwks-rsa";
 import type { NextRequest } from "next/server";
@@ -18,43 +16,8 @@ type Context = {
 	userId: string | undefined;
 };
 
-type ResolversWithoutShit = Pick<Resolvers<Context>, "Query">;
-
-const resolvers = {
-	Query: {
-		me: async (_, __, ctx) => {
-			if (!ctx.userId) {
-				throw new GraphQLError("User is not authenticated", {
-					extensions: {
-						code: "UNAUTHENTICATED",
-						http: { status: 401 },
-					},
-				});
-			}
-
-			const user = await api.users.getById(ctx.userId);
-
-			if (!user) {
-				throw new GraphQLError("User is not authenticated", {
-					extensions: {
-						code: "UNAUTHENTICATED",
-						http: { status: 401 },
-					},
-				});
-			}
-
-			return user;
-		},
-		plates: async () => [],
-		presets: async () => [],
-	},
-} satisfies ResolversWithoutShit;
-
 const server = new ApolloServer<Context>({
-	resolvers,
-	typeDefs: schema,
-	introspection: true,
-	csrfPrevention: false,
+	schema,
 });
 
 const handler = startServerAndCreateNextHandler<NextRequest, Context>(server, {
