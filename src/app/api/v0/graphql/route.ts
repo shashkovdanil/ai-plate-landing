@@ -18,6 +18,7 @@ type Context = {
 
 const server = new ApolloServer<Context>({
 	schema,
+	introspection: true,
 });
 
 const handler = startServerAndCreateNextHandler<NextRequest, Context>(server, {
