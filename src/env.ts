@@ -7,8 +7,9 @@ export const env = createEnv({
 		CLERK_WEBHOOK_SECRET: z.string().startsWith("whsec_"),
 		OPENAI_API_KEY: z.string().startsWith("sk-"),
 		CLERK_SECRET_KEY: z.string().startsWith("sk_"),
-    NODE_ENV: z.enum(['development', 'production', 'test']),
-    JWKS_URI: z.string(),
+		NODE_ENV: z.enum(["development", "production", "test"]),
+		JWKS_URI: z.string(),
+		ANTHROPIC_API_KEY: z.string().startsWith("sk-"),
 	},
 	client: {
 		NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().startsWith("pk_"),
