@@ -1,8 +1,8 @@
 import { anthropicApi } from "@/services/anthropic";
-import { db, users } from "@/services/db";
+import { db, plates, users } from "@/services/db";
 import { buildSchema } from "drizzle-graphql";
 import { eq } from "drizzle-orm";
-import { GraphQLObjectType, GraphQLSchema } from "graphql";
+import { GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
 import pick from "lodash/pick";
 
 const { entities } = buildSchema(db);
@@ -47,6 +47,29 @@ export const schema = new GraphQLSchema({
 						.returning();
 
 					return user;
+				},
+			},
+			generatePlate: {
+				type: entities.queries.platesSingle.type,
+				args: {
+					where: {
+						type: entities.inputs.PlatesFilters,
+					},
+					content: {
+						type: GraphQLString,
+					},
+				},
+				resolve: async (source, args, context, info) => {
+					const result = await anthropicApi.generatePlate(args.content);
+
+					const [plate] = await db
+						.insert(plates)
+						.values(
+							result.map((item) => ({ ...item, userId: args.where.userId.eq })),
+						)
+						.returning();
+
+					return plate;
 				},
 			},
 		},
