@@ -10,6 +10,7 @@ export const env = createEnv({
 		NODE_ENV: z.enum(["development", "production", "test"]),
 		JWKS_URI: z.string(),
 		ANTHROPIC_API_KEY: z.string().startsWith("sk-"),
+		REPLICATE_API_TOKEN: z.string().startsWith("r"),
 	},
 	client: {
 		NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().startsWith("pk_"),

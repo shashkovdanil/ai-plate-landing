@@ -9,14 +9,14 @@ export const DAILY_NORMS_AND_RECOMMENDATIONS = `Given the following user data:
 
 Please generate the following personalized information:
 
-- Metabolic Rate: Calculate the user's basal metabolic rate based on the provided data.
-- Daily Water: Determine the optimal daily water intake in ml (integer) for the user.
-- Daily Calories: Calculate the recommended daily caloric intake in kcal based on the user's goal and activity level.
-- Macronutrient Breakdown: Provide the recommended daily amounts of proteins, fats, and carbs in grams.
-- Nutrition Recommendations: Offer clear and concise dietary and lifestyle recommendations tailored to the user's needs and goals. Include examples of healthy food choices and meal plans. Maybe some lifehacks or tips.
-- Supplement Recommendations: If applicable, suggest supplements that may benefit the user based on their data. Provide links to relevant medical studies supporting the benefits of each supplement to enhance user confidence.
+- Metabolic Rate
+- Daily Water (in ml)
+- Daily Calories (in kcal based on the user's goal and activity level)
+- Macronutrient Breakdown
+- Nutrition Recommendations
+- Short list of supplement recommendations (The benefits of supplements should be confirmed by medical studies)
 
-Use JSON format:
+Respond with JSON format, don't add any additional text. The response should be parsed without errors with the JSON.parse function:
 {
   "data": {
     "metabolicRate": number,
@@ -25,12 +25,10 @@ Use JSON format:
     "dailyProteins": number,
     "dailyFats": number,
     "dailyCarbs": number,
-    "nutritionRecommendations": string, // Markdown
-    "supplementRecommendations": string // Markdown
+    "nutritionRecommendations": string,
+    "supplementRecommendations": string
   }
-}
-
-Respond with JSON format, don't add any additional text. The response should be parsed without errors with the JSON.parse function.`;
+}`;
 
 export const PLATE = `Plate GPT is an AI model designed to provide accurate nutritional summaries based on users' food intake. When given details about the foods consumed, including quantities and any optional nutritional values, the model generates a JSON response with the following columns:
 
