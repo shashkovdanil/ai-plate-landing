@@ -73,7 +73,7 @@ export class Anthropic {
 		});
 
 		const completion = await anthropic.messages.create({
-			model: "claude-3-sonnet-20240229",
+			model: "claude-3-haiku-20240307",
 			system: DAILY_NORMS_AND_RECOMMENDATIONS,
 			messages: [
 				{

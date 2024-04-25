@@ -7,6 +7,8 @@ import jwt from "jsonwebtoken";
 import jwksClient from "jwks-rsa";
 import type { NextRequest } from "next/server";
 
+export const maxDuration = 10;
+
 const client = jwksClient({
 	jwksUri: env.JWKS_URI,
 });
